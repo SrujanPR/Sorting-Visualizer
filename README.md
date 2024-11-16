@@ -20,7 +20,7 @@ Sorting Visualizer is designed to help users comprehend how sorting algorithms w
 ### 📌 **Try Out the Sorting Visualizer**
 
 This is the link to try and test the Sorting Visualizer,
-Link - `(https://srujanpr.github.io/Sorting-Visualizer/)`
+Link - [(https://srujanpr.github.io/Sorting-Visualizer/)]
 
 ---
 
