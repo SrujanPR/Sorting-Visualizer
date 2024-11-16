@@ -25,12 +25,12 @@ Follow these steps to set up and run the Sorting Visualizer on your system:
 
 ### **1. Clone the Repository**
 ```bash
-git clone https://github.com/your-username/sorting-visualizer.git
+git clone https://github.com/SrujanPR/Sorting-Visualizer.git
 ```
 
 ### **2. Navigate to the Directory**
 ```bash
-cd sorting-visualizer
+cd Sorting-Visualizer
 ```
 
 ### **3. Open the Project**
