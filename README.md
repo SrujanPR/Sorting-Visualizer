@@ -9,6 +9,12 @@ Welcome to **Sorting Visualizer**! 🎉 This project is a dynamic and interactiv
 
 Sorting Visualizer is designed to help users comprehend how sorting algorithms work through visual representation. You can select from multiple sorting algorithms, adjust the speed of visualization, and control the process with options like "Previous Step" or "Stop Sorting." The theme toggle adds an extra layer of customization for user comfort.  
 
+## 📌 **Try Out the Sorting Visualizer**
+
+This is the link to try and test the Sorting Visualizer,
+Link - `(https://srujanpr.github.io/Sorting-Visualizer/)`
+
+
 ### Key Features:
 - 🎨 **Theme Toggle**: Switch between light and dark modes for better readability.
 - 🎲 **Random Array Generation**: Generate a random array to start sorting.
