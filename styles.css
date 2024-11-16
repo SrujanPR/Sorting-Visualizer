@@ -1,0 +1,105 @@
+:root {
+    --background-color: #1e1e2f;
+    --text-color: #ffffff;
+    --bar-color: #ff8c00;
+    --button-color: #ffa500;
+    --light-background: #f7f7f7;
+    --light-text: #333333;
+    --light-bar: #ff6f00;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  h1 {
+    margin: 20px 0;
+  }
+  
+  #controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--button-color);
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  #array-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    width: 80%;
+    height: 300px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    overflow-x: auto;
+  }
+  
+  .bar {
+    background-color: var(--bar-color);
+    width: 25px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  
+  .bar span {
+    position: absolute;
+    bottom: 5px;
+    font-size: 12px;
+    color: white;
+  }
+  
+  #speed {
+    width: 150px;
+    margin-left: 10px;
+  }
+  
+  .theme-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+    border: 2px solid var(--text-color);
+    border-radius: 50%;
+    background: none;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  body.light-mode {
+    --background-color: var(--light-background);
+    --text-color: var(--light-text);
+    --bar-color: var(--light-bar);
+  }
+  
+  body.light-mode .theme-button {
+    color: var(--light-text);
+    border-color: var(--light-text);
+  }
+  

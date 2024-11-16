@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorting Visualizer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="theme-toggle" class="theme-button">
+    <span id="icon">☀️</span> <!-- Default to Sun Icon -->
+  </div>
+  <h1>Sorting Visualizer</h1>
+  <div id="controls">
+    <button id="generate-array">Generate Array</button>
+    <button id="input-array">Input Array</button>
+    <select id="algorithm">
+      <option value="bubble">Bubble Sort</option>
+      <option value="selection">Selection Sort</option>
+      <option value="insertion">Insertion Sort</option>
+      <option value="merge">Merge Sort</option>
+      <option value="quick">Quick Sort</option>
+      <option value="heap">Heap Sort</option>
+    </select>
+    <button id="start-sorting">Start Sorting</button>
+    <button id="stop-sorting">Stop Sorting</button>
+    <button id="previous-step">Previous Step</button>
+    <label for="speed">Speed:</label>
+    <input type="range" id="speed" min="10" max="500" value="100">
+  </div>
+  <div id="description"></div>
+  <div id="array-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
