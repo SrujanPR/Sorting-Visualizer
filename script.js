@@ -260,6 +260,7 @@ algorithmSelect.addEventListener("change", () => {
   const selectedAlgorithm = algorithmSelect.value;
   descriptionDiv.textContent = algorithmDescriptions[selectedAlgorithm];
 });
+
 // Event Listeners
 generateArrayButton.addEventListener("click", generateArray);
 inputArrayButton.addEventListener("click", inputArray);
