@@ -13,6 +13,7 @@ let array = [];
 let history = [];
 let stopSorting = false;
 let delay = 100;
+
 // Theme Toggle
 themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("light-mode");
