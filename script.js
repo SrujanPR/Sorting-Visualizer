@@ -19,6 +19,7 @@ themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("light-mode");
     icon.textContent = document.body.classList.contains("light-mode") ? "🌙" : "☀️";
   });
+
 // Descriptions of Sorting Algorithms
 const algorithmDescriptions = {
   bubble: "Bubble Sort: Repeatedly compares adjacent elements and swaps them if they are in the wrong order.",
