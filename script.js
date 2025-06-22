@@ -29,6 +29,7 @@ const algorithmDescriptions = {
   quick: "Quick Sort: Picks a pivot and partitions the array into elements smaller and larger than the pivot.",
   heap: "Heap Sort: Converts the array into a heap and repeatedly extracts the maximum element.",
 };
+
 // Generate Random Array
 function generateArray() {
   stopSorting = true;
