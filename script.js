@@ -38,6 +38,7 @@ function generateArray() {
   history = [];
   displayArray();
 }
+
 // Display Array
 function displayArray() {
   arrayContainer.innerHTML = "";
