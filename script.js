@@ -52,6 +52,7 @@ function displayArray() {
     arrayContainer.appendChild(bar);
   });
 }
+
 // Input Custom Array
 function inputArray() {
   stopSorting = true;
