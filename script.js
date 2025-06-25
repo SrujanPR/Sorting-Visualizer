@@ -63,6 +63,7 @@ function inputArray() {
     displayArray();
   }
 }
+
 // Helper Function to Swap Bars
 function swapBars(bar1, bar2) {
   const tempHeight = bar1.style.height;
