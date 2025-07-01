@@ -73,6 +73,7 @@ function swapBars(bar1, bar2) {
   bar2.style.height = tempHeight;
   bar2.firstChild.textContent = tempValue;
 }
+
 // Save Current Array State
 function saveState() {
   history.push([...array]);
