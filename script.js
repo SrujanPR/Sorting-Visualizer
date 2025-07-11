@@ -78,6 +78,7 @@ function swapBars(bar1, bar2) {
 function saveState() {
   history.push([...array]);
 }
+
 // Revert to Previous State
 function revertToPreviousState() {
   if (history.length > 0) {
