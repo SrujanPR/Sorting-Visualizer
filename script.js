@@ -86,6 +86,7 @@ function revertToPreviousState() {
     displayArray();
   }
 }
+
 // Bubble Sort
 async function bubbleSort() {
   const bars = document.getElementsByClassName("bar");
