@@ -4,31 +4,78 @@ const inputArrayButton = document.getElementById("input-array");
 const startSortingButton = document.getElementById("start-sorting");
 const stopSortingButton = document.getElementById("stop-sorting");
 const previousStepButton = document.getElementById("previous-step");
-const algorithmSelect = document.getElementById("algorithm");
 const speedSlider = document.getElementById("speed");
 const themeToggle = document.getElementById("theme-toggle");
 const descriptionDiv = document.getElementById("description");
+const dropdownButton = document.getElementById("dropdown-button");
+const dropdownContent = document.getElementById("dropdown-content");
 
 let array = [];
 let history = [];
 let stopSorting = false;
 let delay = 100;
+let selectedAlgorithm = "bubble"; // default
 
 // Theme Toggle
+const icon = document.getElementById("icon");
 themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("light-mode");
-    icon.textContent = document.body.classList.contains("light-mode") ? "🌙" : "☀️";
+  document.body.classList.toggle("light-mode");
+  icon.textContent = document.body.classList.contains("light-mode") ? "🌙" : "☀️";
+});
+
+// Dropdown Handling
+dropdownButton.addEventListener("click", () => {
+  dropdownContent.style.display =
+    dropdownContent.style.display === "block" ? "none" : "block";
+});
+
+dropdownContent.querySelectorAll("div").forEach((item) => {
+  item.addEventListener("click", () => {
+    selectedAlgorithm = item.dataset.value;
+    dropdownButton.textContent = `${item.textContent} ▼`;
+    const info = algorithmInfo[selectedAlgorithm];
+    document.getElementById("algo-desc").textContent = info.desc;
+    document.getElementById("algo-time").textContent = info.time;
+    document.getElementById("algo-space").textContent = info.space;
+    dropdownContent.style.display = "none";
   });
+});
+
 
 // Descriptions of Sorting Algorithms
-const algorithmDescriptions = {
-  bubble: "Bubble Sort: Repeatedly compares adjacent elements and swaps them if they are in the wrong order.",
-  selection: "Selection Sort: Selects the smallest element from the unsorted part and swaps it with the first element.",
-  insertion: "Insertion Sort: Builds the sorted array one item at a time by inserting elements into their correct positions.",
-  merge: "Merge Sort: Divides the array into halves, sorts them, and then merges the sorted halves.",
-  quick: "Quick Sort: Picks a pivot and partitions the array into elements smaller and larger than the pivot.",
-  heap: "Heap Sort: Converts the array into a heap and repeatedly extracts the maximum element.",
+const algorithmInfo = {
+  bubble: {
+    desc: "Bubble Sort: Repeatedly compares adjacent elements and swaps them if they are in the wrong order.",
+    time: "Time Complexity: Best O(n), Average O(n²), Worst O(n²)",
+    space: "Space Complexity: O(1)"
+  },
+  selection: {
+    desc: "Selection Sort: Selects the smallest element from the unsorted part and swaps it with the first element.",
+    time: "Time Complexity: Best O(n²), Average O(n²), Worst O(n²)",
+    space: "Space Complexity: O(1)"
+  },
+  insertion: {
+    desc: "Insertion Sort: Builds the sorted array one item at a time by inserting elements into their correct positions.",
+    time: "Time Complexity: Best O(n), Average O(n²), Worst O(n²)",
+    space: "Space Complexity: O(1)"
+  },
+  merge: {
+    desc: "Merge Sort: Divides the array into halves, sorts them, and then merges the sorted halves.",
+    time: "Time Complexity: Best O(n log n), Average O(n log n), Worst O(n log n)",
+    space: "Space Complexity: O(n)"
+  },
+  quick: {
+    desc: "Quick Sort: Picks a pivot and partitions the array into elements smaller and larger than the pivot.",
+    time: "Time Complexity: Best O(n log n), Average O(n log n), Worst O(n²)",
+    space: "Space Complexity: O(log n)"
+  },
+  heap: {
+    desc: "Heap Sort: Converts the array into a heap and repeatedly extracts the maximum element.",
+    time: "Time Complexity: Best O(n log n), Average O(n log n), Worst O(n log n)",
+    space: "Space Complexity: O(1)"
+  }
 };
+
 
 // Generate Random Array
 function generateArray() {
@@ -107,6 +154,7 @@ async function bubbleSort() {
     bars[array.length - i - 1].style.backgroundColor = "green";
   }
 }
+
 // Selection Sort
 async function selectionSort() {
   const bars = document.getElementsByClassName("bar");
@@ -117,7 +165,6 @@ async function selectionSort() {
     for (let j = i + 1; j < array.length; j++) {
       if (stopSorting) return;
       bars[j].style.backgroundColor = "blue";
-
       if (array[j] < array[minIndex]) {
         bars[minIndex].style.backgroundColor = "var(--bar-color)";
         minIndex = j;
@@ -134,6 +181,7 @@ async function selectionSort() {
     bars[i].style.backgroundColor = "green";
   }
 }
+
 // Insertion Sort
 async function insertionSort() {
   const bars = document.getElementsByClassName("bar");
@@ -153,13 +201,22 @@ async function insertionSort() {
   }
   displayArray();
 }
-// Merge Sort Helper
+
+// Merge Sort
+async function mergeSort(start = 0, end = array.length - 1) {
+  if (start < end) {
+    const mid = Math.floor((start + end) / 2);
+    await mergeSort(start, mid);
+    await mergeSort(mid + 1, end);
+    await merge(start, mid, end);
+  }
+}
+
 async function merge(start, mid, end) {
   if (stopSorting) return;
   const tempArray = [];
   const bars = document.getElementsByClassName("bar");
-  let i = start,
-    j = mid + 1;
+  let i = start, j = mid + 1;
   while (i <= mid && j <= end) {
     if (stopSorting) return;
     bars[i].style.backgroundColor = "red";
@@ -180,16 +237,17 @@ async function merge(start, mid, end) {
     bars[k].style.backgroundColor = "green";
   }
 }
-// Merge Sort
-async function mergeSort(start = 0, end = array.length - 1) {
-  if (start < end) {
-    const mid = Math.floor((start + end) / 2);
-    await mergeSort(start, mid);
-    await mergeSort(mid + 1, end);
-    await merge(start, mid, end);
+
+// Quick Sort
+async function quickSort(low = 0, high = array.length - 1) {
+  if (low < high) {
+    const pi = await partition(low, high);
+    if (pi === -1) return;
+    await quickSort(low, pi - 1);
+    await quickSort(pi + 1, high);
   }
 }
-// Quick Sort Partition
+
 async function partition(low, high) {
   const pivot = array[high];
   const bars = document.getElementsByClassName("bar");
@@ -212,16 +270,21 @@ async function partition(low, high) {
   swapBars(bars[i + 1], bars[high]);
   return i + 1;
 }
-// Quick Sort
-async function quickSort(low = 0, high = array.length - 1) {
-  if (low < high) {
-    const pi = await partition(low, high);
-    if (pi === -1) return; // Stop sorting if interrupted
-    await quickSort(low, pi - 1);
-    await quickSort(pi + 1, high);
+
+// Heap Sort
+async function heapSort() {
+  const n = array.length;
+  for (let i = Math.floor(n / 2) - 1; i >= 0; i--) await heapify(n, i);
+  for (let i = n - 1; i > 0; i--) {
+    if (stopSorting) return;
+    saveState();
+    [array[0], array[i]] = [array[i], array[0]];
+    swapBars(document.getElementsByClassName("bar")[0], document.getElementsByClassName("bar")[i]);
+    await new Promise((resolve) => setTimeout(resolve, delay));
+    await heapify(i, 0);
   }
 }
-// Heap Sort Helper
+
 async function heapify(n, i) {
   if (stopSorting) return;
   const bars = document.getElementsByClassName("bar");
@@ -238,42 +301,28 @@ async function heapify(n, i) {
     await heapify(n, largest);
   }
 }
-// Heap Sort
-async function heapSort() {
-  const n = array.length;
-  for (let i = Math.floor(n / 2) - 1; i >= 0; i--) await heapify(n, i);
-  for (let i = n - 1; i > 0; i--) {
-    if (stopSorting) return;
-    saveState();
-    [array[0], array[i]] = [array[i], array[0]];
-    swapBars(document.getElementsByClassName("bar")[0], document.getElementsByClassName("bar")[i]);
-    await new Promise((resolve) => setTimeout(resolve, delay));
-    await heapify(i, 0);
-  }
-}
+
 // Start Sorting
 startSortingButton.addEventListener("click", () => {
-  const algorithm = algorithmSelect.value;
   stopSorting = false;
-  if (algorithm === "bubble") bubbleSort();
-  else if (algorithm === "selection") selectionSort();
-  else if (algorithm === "insertion") insertionSort();
-  else if (algorithm === "merge") mergeSort();
-  else if (algorithm === "quick") quickSort();
-  else if (algorithm === "heap") heapSort();
-});
-// Adjust Speed
-speedSlider.addEventListener("input", () => (delay = parseInt(speedSlider.value)));
-// Add Algorithm Description
-algorithmSelect.addEventListener("change", () => {
-  const selectedAlgorithm = algorithmSelect.value;
-  descriptionDiv.textContent = algorithmDescriptions[selectedAlgorithm];
+  if (selectedAlgorithm === "bubble") bubbleSort();
+  else if (selectedAlgorithm === "selection") selectionSort();
+  else if (selectedAlgorithm === "insertion") insertionSort();
+  else if (selectedAlgorithm === "merge") mergeSort();
+  else if (selectedAlgorithm === "quick") quickSort();
+  else if (selectedAlgorithm === "heap") heapSort();
 });
 
-// Event Listeners
+// Speed Control
+speedSlider.addEventListener("input", () => {
+  delay = parseInt(speedSlider.value);
+});
+
+// Button Events
 generateArrayButton.addEventListener("click", generateArray);
 inputArrayButton.addEventListener("click", inputArray);
 stopSortingButton.addEventListener("click", () => (stopSorting = true));
 previousStepButton.addEventListener("click", revertToPreviousState);
+
 // Initialize
 generateArray();
