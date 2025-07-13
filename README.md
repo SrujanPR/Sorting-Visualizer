@@ -137,7 +137,7 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 ## 📷 **Preview**
 
-![alt text](image.png)
+![alt text](image2.png)
 
 ![alt text](image1.png)
 
