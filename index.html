@@ -15,21 +15,28 @@
   <div id="controls">
     <button id="generate-array">Generate Array</button>
     <button id="input-array">Input Array</button>
-    <select id="algorithm">
-      <option value="bubble">Bubble Sort</option>
-      <option value="selection">Selection Sort</option>
-      <option value="insertion">Insertion Sort</option>
-      <option value="merge">Merge Sort</option>
-      <option value="quick">Quick Sort</option>
-      <option value="heap">Heap Sort</option>
-    </select>
+    <div class="dropdown">
+      <button id="dropdown-button">Sorting ▼</button>
+      <div id="dropdown-content" class="dropdown-content">
+        <div data-value="bubble">Bubble Sort</div>
+        <div data-value="selection">Selection Sort</div>
+        <div data-value="insertion">Insertion Sort</div>
+        <div data-value="merge">Merge Sort</div>
+        <div data-value="quick">Quick Sort</div>
+        <div data-value="heap">Heap Sort</div>
+      </div>
+    </div>
     <button id="start-sorting">Start Sorting</button>
     <button id="stop-sorting">Stop Sorting</button>
     <button id="previous-step">Previous Step</button>
     <label for="speed">Speed:</label>
     <input type="range" id="speed" min="10" max="499" value="100">
   </div>
-  <div id="description"></div>
+  <div id="description">
+    <p id="algo-desc"></p>
+    <p id="algo-time"></p>
+    <p id="algo-space"></p>
+  </div>
   <div id="array-container"></div>
   <script src="script.js"></script>
 </body>
