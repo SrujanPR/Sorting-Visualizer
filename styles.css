@@ -47,10 +47,10 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 20px 30px;
   background: var(--container-bg);
   border-radius: 15px;
   backdrop-filter: blur(6px);
