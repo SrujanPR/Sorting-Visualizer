@@ -139,6 +139,6 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 ![alt text](image.png)
 
-![alt text](image-1.png)
+![alt text](image1.png)
 
 
