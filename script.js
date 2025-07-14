@@ -302,7 +302,7 @@ async function heapify(n, i) {
   }
 }
 
-// Start Sorting
+// Sorting Button Code:
 startSortingButton.addEventListener("click", () => {
   stopSorting = false;
   if (selectedAlgorithm === "bubble") bubbleSort();
